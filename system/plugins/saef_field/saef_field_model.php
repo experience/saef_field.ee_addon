@@ -6,7 +6,7 @@
  * @author			Stephen Lewis <addons@experienceinternet.co.uk>
  * @copyright		Experience Internet
  * @package			SAEF Field
- * @version 		0.1.0
+ * @version 		1.0.0
  */
 
 class Saef_field_model {
@@ -54,7 +54,7 @@ class Saef_field_model {
 	public function __construct()
 	{
 		$this->_package_name	= 'Saef_field';
-		$this->_package_version	= '0.1.0';
+		$this->_package_version	= '1.0.0';
 	}
 	
 	
@@ -174,7 +174,7 @@ class Saef_field_model {
 	 */
 	public function get_usage_instructions()
 	{
-		return '<p>Usage.</p>';
+		return 'http://github.com/experience/saef_field.ee_addon/';
 	}
 	
 	

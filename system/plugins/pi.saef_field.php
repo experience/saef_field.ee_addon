@@ -38,6 +38,14 @@ class Saef_field {
 	 */
 	public $plugin_info;
 	
+	/**
+	 * The return data.
+	 *
+	 * @access	public
+	 * @var		string
+	 */
+	public $return_data;
+	
 	
 	
 	/* --------------------------------------------------------------
@@ -62,16 +70,49 @@ class Saef_field {
 			'pi_usage'			=> $this->_model->get_usage_instructions(),
 			'pi_version'		=> $this->_model->get_package_version()
 		);
+		
+		$this->return_data = $this->_process_tag();
 	}
 	
 	
 	/**
-	 * Outputs information for the specified field.
+	 * Incredibly annoyingly, EE requires the old style PHP4
+	 * constructor in order to work.
 	 *
 	 * @access	public
+	 * @return	void
+	 */
+	public function Saef_field()
+	{
+		$this->__construct();
+	}
+	
+	
+	/**
+	 * Sets the mock model. Used for testing.
+	 *
+	 * @access	public
+	 * @param	object		$model		The mock model.
+	 * @return	void
+	 */
+	public function set_mock_model($model)
+	{
+		$this->_model = $model;
+	}
+	
+	
+	
+	/* --------------------------------------------------------------
+	 * PRIVATE METHODS
+	 * ------------------------------------------------------------ */
+	
+	/**
+	 * Outputs information for the specified fields.
+	 *
+	 * @access	private
 	 * @return	string
 	 */
-	public function field()
+	public function _process_tag()
 	{
 		global $TMPL;
 		
@@ -113,7 +154,7 @@ class Saef_field {
 				? $entry_data['field_id_' .$field['field_id']]
 				: '';
 			
-			$loop_tagdata	= $this->swap_pair_vars($this->swap_single_vars($loop_tagdata, $field), $field);
+			$loop_tagdata	= $this->_swap_pair_vars($this->_swap_single_vars($loop_tagdata, $field), $field);
 			$return_tagdata .= $loop_tagdata;
 		}
 		
@@ -124,12 +165,12 @@ class Saef_field {
 	/**
 	 * Swaps the pair variables in the supplied tagdata.
 	 *
-	 * @access	public
+	 * @access	private
 	 * @param	string		$tagdata		The tagdata.
 	 * @param	array		$field_data		The field data.
 	 * @return	string
 	 */
-	public function swap_pair_vars($tagdata, Array $field_data = array())
+	private function _swap_pair_vars($tagdata, Array $field_data = array())
 	{
 		global $TMPL;
 		
@@ -176,7 +217,7 @@ class Saef_field {
 						'option_selected'	=> $field_data['field_value'] === $field_list_item ? 'selected="selected"' : ''
 					);
 					
-					$field_options .= $this->swap_single_vars($inner_tagdata, $single_vars);
+					$field_options .= $this->_swap_single_vars($inner_tagdata, $single_vars);
 				}
 			}
 			
@@ -202,7 +243,7 @@ class Saef_field {
 						'option_selected'	=> $field_data['field_value'] === $related_entry['entry_id'] ? 'selected="selected"' : ''
 					);
 					
-					$field_options .= $this->swap_single_vars($inner_tagdata, $single_vars);
+					$field_options .= $this->_swap_single_vars($inner_tagdata, $single_vars);
 				}
 			}
 		}
@@ -215,12 +256,12 @@ class Saef_field {
 	/**
 	 * Swaps the single variables in the supplied tagdata.
 	 *
-	 * @access	public
+	 * @access	private
 	 * @param	string		$tagdata		The tagdata.
 	 * @param	array		$field_data		The field data.
 	 * @return	string
 	 */
-	public function swap_single_vars($tagdata, Array $field_data = array())
+	private function _swap_single_vars($tagdata, Array $field_data = array())
 	{
 		global $FNS, $TMPL;
 		
@@ -239,7 +280,7 @@ class Saef_field {
 		 *
 		 * At that point, we'd need to loop through the $TMPL->var_single
 		 * array instead, and would no longer be able to call this method
-		 * from $this->swap_pair_vars.
+		 * from $this->_swap_pair_vars.
 		 */
 		
 		foreach ($field_data AS $tag_name => $tag_value)
@@ -253,18 +294,6 @@ class Saef_field {
 		return $tagdata;
 	}
 	
-	
-	/**
-	 * Sets the mock model. Used for testing.
-	 *
-	 * @access	public
-	 * @param	object		$model		The mock model.
-	 * @return	void
-	 */
-	public function set_mock_model($model)
-	{
-		$this->_model = $model;
-	}
 	
 }
 
