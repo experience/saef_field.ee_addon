@@ -174,7 +174,7 @@ class Saef_field_model {
 	 */
 	public function get_usage_instructions()
 	{
-		return 'http://github.com/experience/saef_field.ee_addon/';
+		return 'http://experienceinternet.co.uk/software/saef-field/';
 	}
 	
 	

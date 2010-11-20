@@ -61,10 +61,10 @@ class Test_saef_field extends Testee_unit_test_case {
 	
 	
 	/* --------------------------------------------------------------
-	 * TEST METHODS
+	 * REDUNDANT TEST METHODS
 	 * ------------------------------------------------------------ */
 	
-	public function test_swap_single_vars__success()
+	public function xtest_swap_single_vars__success()
 	{
 		global $TMPL;
 		
@@ -136,7 +136,7 @@ class Test_saef_field extends Testee_unit_test_case {
 	}
 	
 	
-	public function test_swap_single_vars__no_vars()
+	public function xtest_swap_single_vars__no_vars()
 	{
 		global $TMPL;
 		
@@ -153,7 +153,7 @@ class Test_saef_field extends Testee_unit_test_case {
 	}
 	
 	
-	public function test_swap_single_vars__no_tagdata()
+	public function xtest_swap_single_vars__no_tagdata()
 	{
 		global $TMPL;
 		
