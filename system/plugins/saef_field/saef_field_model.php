@@ -6,7 +6,7 @@
  * @author          Stephen Lewis (http://github.com/experience/)
  * @copyright       Experience Internet
  * @package         SAEF Field
- * @version         1.0.0
+ * @version         1.0.1
  */
 
 class Saef_field_model {
@@ -29,7 +29,7 @@ class Saef_field_model {
      */
     public static function get_package_version()
     {
-        return '1.0.0';
+        return '1.0.1';
     }
 
 
